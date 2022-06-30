@@ -1,5 +1,7 @@
+<div class="container_login">
+
 <% if resource.errors.any? %>
-  <div id="error_explanation">
+  <div class="alert alert-danger" role="alert">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
@@ -13,3 +15,5 @@
     </ul>
   </div>
 <% end %>
+
+</div>
