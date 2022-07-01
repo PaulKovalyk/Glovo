@@ -3,5 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "update" do
+    let(:user) {create(:user) }
+    let(:first_name) { 'Alex' }
+    let(:last_name) { 'Doe' }
+
+    it 'updates user' do 
+      expect(user.first_name) to eq(nil)
+      user.update(first_name: first_name)
+      expect(user.reload.first_name).to eq('Alex')
+    end
+  end
 end
