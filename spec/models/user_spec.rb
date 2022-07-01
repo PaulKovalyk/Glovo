@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
     let(:last_name) { 'Doe' }
 
     it 'updates user' do 
-      expect(user.first_name) to eq(nil)
+      expect(user.first_name).to eq(nil)
       user.update(first_name: first_name)
       expect(user.reload.first_name).to eq('Alex')
     end
