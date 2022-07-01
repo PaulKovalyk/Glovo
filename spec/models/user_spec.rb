@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'devise'
 
 RSpec.describe User, type: :model do
-  describe 'update' do
+  describe 'valid' do
     let(:user) { create(:user) }
-    let(:first_name) { 'Alex' }
-    let(:last_name) { 'Doe' }
 
-    it 'updates user' do
-      user.update(first_name: first_name)
-      expect(user.reload.first_name).to eq('Alex')
+    it "should  be valid " do
+      expect(user).to be_valid 
     end
   end
+  
 end
