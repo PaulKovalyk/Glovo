@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'devise'
 
 RSpec.describe User, type: :model do
   describe '#validation' do
     let(:user) { create(:user, email: 'tester@test.com') }
+
+    before { user.save }
 
     it 'has a first name' do
       expect(user).to be_valid
@@ -58,11 +59,10 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid, 'More than 40 characters'
     end
 
-    it 'when email adress already been taken' do
-      expect(user).to be_valid
+    context 'with email uniqueness' do
+      let(:user1) { described_class.new(email: 'tester@test.com') }
 
-      create(:user, email: 'hakuna@gmail.com')
-      expect(user).not_to be_valid
+      it { expect(user1).not_to be_valid }
     end
   end
 end
