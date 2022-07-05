@@ -46,3 +46,15 @@
    padding: 1% 0 0;
    margin: auto;
  }
+ .list_image{
+   width: 200px;
+   height: 200px;
+}
+.container_restaurants{
+   width: 800px;
+   padding: 1% 0 0;
+   margin: auto;
+}
+.tag{
+   margin-right: 50px;
+}

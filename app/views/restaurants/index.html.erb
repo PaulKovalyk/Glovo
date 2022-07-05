@@ -1,0 +1,29 @@
+ <% if user_signed_in? %>
+  <h1 class="alert alert-success"> Glad to see you <%= current_user.last_name%> <%= current_user.first_name %> in Glovo</h1>
+<% else %>
+  <h1 class="text-center text-dark">Welcome to Glovo</h1>
+<% end %>
+<% @restaurants.each do |restaurant| %>
+  <div class="d-flex ">
+    
+    <article class="card mb-3 container_restaurants bg-info">
+    
+    <div class="card-body d-flex">
+      <%= image_tag(restaurant.image_url, class: 'list_image') %>
+        
+      <div class="ms-4">
+        <h2 ><%= link_to restaurant.name, restaurant_path(restaurant),class:"text-warning bg-body text-decoration-none border border-2"%></h2>
+        <section class="card-text">
+          <p><%= truncate strip_tags(restaurant.description), length: 100,omission:'...(continued)'  %></p>
+        </section>
+        <h6><%= restaurant.address%></h6>
+        <h5 class="badge bg-warning text-dark"><%= render restaurant.tags%></h5>
+      </div>
+      
+    </div>
+       
+    </article>
+
+  </div>
+
+<% end %>

@@ -1,0 +1,31 @@
+
+<%= form_with model: @restaurant do |f| %>
+ <div>
+    <%= f.label :name, style: "display: block" %>
+    <%= f.text_field :name%>
+  </div>
+
+  <div>
+    <%= f.label :description, style: "display: block" %>
+    <%= f.text_area :description, rows: 6 %>
+  </div>
+
+  <div>
+    <%= f.label :image_url, style: "display: block" %>
+    <%= f.text_field :image_url %>
+  </div>
+
+  <div>
+    <%= f.label :address, style: "display: block" %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.label :tags, style: "display: block" %>
+    <%= f.collection_select :tag_ids, @tags, :id,:title,{},multiple:  true %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %> 
