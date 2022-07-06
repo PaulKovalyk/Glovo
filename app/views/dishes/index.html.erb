@@ -1,0 +1,18 @@
+<div class=" container d-flex">
+  <div class="side_bar col-1">
+  </div>
+  <div class="col-11 d-flex ms-3 flex-wrap">
+    <% @restaurant.dishes.each do |dish|%>
+      <article class="card ms-2 mt-2">
+        <div class="card-body">
+          <div>
+            <img src="https://fakeimg.pl/250x100/">
+            <h3><%=dish.name%></h3>
+            <h6>Price: <%=dish.price%> UAH</h6>
+            <h6>Weight: <%= dish.weight%>g</h6>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  </div>
+</div>

@@ -21,9 +21,18 @@ r1 = Restaurant.create!(name: 'МакДональдз',
 tag1 = Tag.create(title: 'Fast food')
 tag2 = Tag.create(title: 'Burgers')
 tag6 = Tag.create(title: 'Dessert')
+dish1 = Dish.create(name: 'Big Mac',price:65,weight:150)
+dish2 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish3 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish4 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
 r1.tags << tag1
 r1.tags << tag2
 r1.tags << tag6
+r1.dishes << dish1
+r1.dishes << dish2
+r1.dishes << dish3
+r1.dishes << dish4
+
 r2 = Restaurant.create!(name: 'KFC',
                         description:
         %{<p>
@@ -37,6 +46,16 @@ tag3 = Tag.create(title: 'Fast food')
 tag4 = Tag.create(title: 'Burgers')
 r2.tags << tag3
 r2.tags << tag4
+dish1 = Dish.create(name: 'Big Mac',price:65,weight:150)
+dish2 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish3 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish4 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+
+r2.dishes << dish1
+r2.dishes << dish2
+r2.dishes << dish3
+r2.dishes << dish4
+
 r3 = Restaurant.create!(name: 'La Piec',
                         description:
         %(<p>
@@ -50,6 +69,15 @@ tag5 = Tag.create(title: 'Pizza')
 tag6 = Tag.create(title: 'Burgers')
 r3.tags << tag5
 r3.tags << tag6
+dish1 = Dish.create(name: 'Big Mac',price:65,weight:150)
+dish2 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish3 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish4 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+
+r3.dishes << dish1
+r3.dishes << dish2
+r3.dishes << dish3
+r3.dishes << dish4
 r4 = Restaurant.create!(name: 'NOA',
                         description:
             %(<p>
@@ -63,3 +91,12 @@ tag5 = Tag.create(title: 'Asia')
 tag6 = Tag.create(title: 'Sushi')
 r4.tags << tag5
 r4.tags << tag6
+dish1 = Dish.create(name: 'Big Mac',price:65,weight:150)
+dish2 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish3 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+dish4 = Dish.create(name: 'Chiken Roll',price:85,weight:120)
+
+r4.dishes << dish1
+r4.dishes << dish2
+r4.dishes << dish3
+r4.dishes << dish4

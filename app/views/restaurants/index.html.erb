@@ -12,12 +12,14 @@
       <%= image_tag(restaurant.image_url, class: 'list_image') %>
         
       <div class="ms-4">
-        <h2 ><%= link_to restaurant.name, restaurant_path(restaurant),class:"text-warning bg-body text-decoration-none border border-2"%></h2>
+        <h2 ><%= link_to restaurant.name, restaurant_dishes_path(restaurant),class:"text-warning bg-body text-decoration-none border border-2"%></h2>
         <section class="card-text">
           <p><%= truncate strip_tags(restaurant.description), length: 100,omission:'...(continued)'  %></p>
         </section>
         <h6><%= restaurant.address%></h6>
-        <h5 class="badge bg-warning text-dark"><%= render restaurant.tags%></h5>
+        <div class='d-flex flex-wrap w-75'>
+          <%= render restaurant.tags %>
+        </div>
       </div>
       
     </div>

@@ -51,10 +51,19 @@
    height: 200px;
 }
 .container_restaurants{
+   
    width: 800px;
    padding: 1% 0 0;
    margin: auto;
 }
-.tag{
-   margin-right: 50px;
+
+.side_bar{
+   border: 1px solid #adadad;
+   border-radius: 4px;
+   box-shadow: 0 .09375rem .09375rem 0 rgba(41,41,41,.08),0 .0625rem .125rem 0 rgba(41,41,41,.16);
+   width: 250px;
+   min-height: 50px;
+   
 }
+
+
