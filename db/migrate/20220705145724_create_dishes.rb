@@ -5,7 +5,7 @@ class CreateDishes < ActiveRecord::Migration[7.0]
       t.integer :price
       t.integer :weight
       t.belongs_to :restaurant
-      t.string :status, default: 'Main Dish'
+      t.integer :category, default: 0
 
       t.timestamps
     end

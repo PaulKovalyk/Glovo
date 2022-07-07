@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: %i[show destroy edit update]
-  before_action :fetch_tags, only: %i[new edit]
+  before_action :set_restaurant, only: %i[show]
+  before_action :fetch_tags, only: %i[new]
 
   def index
     @restaurants = Restaurant.order(created_at: :desc)
@@ -17,7 +17,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new restaurant_params
     if @restaurant.save!
-      flash[:success] = 'Restaurant created!'
+      flash[:success] = 'Restaurant created' # rubocop:disable Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
       redirect_to root_path
     else
       render :new
