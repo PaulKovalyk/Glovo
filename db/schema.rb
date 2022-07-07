@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_145724) do
     t.integer "price"
     t.integer "weight"
     t.integer "restaurant_id"
+    t.string "status", default: "Main Dish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_dishes_on_restaurant_id"

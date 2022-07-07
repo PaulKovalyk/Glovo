@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_with url:restaurant_dishes_path(restaurant_id: @restaurant.id)do |f| %>
  <div>
     <%= f.label :name, style: "display: block" %>
@@ -14,8 +15,13 @@
     <%= f.text_field :weight %>
   </div>
  
+ <div>
+    <%= f.label :status, style: "display: block" %>
+    <%= f.select :status, Dish.statuses.keys  %>
+  </div>
 
   <div>
     <%= f.submit %>
   </div>
 <% end %> 
+</div>

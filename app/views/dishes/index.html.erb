@@ -1,6 +1,29 @@
 <div class=" container d-flex">
-  <div class="side_bar col-1">
+  <div class=" col-2 ">
+    
+    <article class="card mb-2">
+    <h6 class="text-center card-body">All</h6>
+    </article>
+
+    <article class="card mb-2">
+    <h6 class="text-center card-body">Soup</h6>
+    </article>
+   
+   <article class="card mb-2">
+    <h6 class="text-center card-body">Pizza</h6>
+    </article>
+   
+   <article class="card mb-2">
+    <h6 class="text-center card-body">Main Dish</h6>
+    </article>
+   
+   <article class="card mb-2">
+    <h6 class="text-center card-body">Dessert</h6>
+    </article>
+   
+   
   </div>
+  
   <div class="col-11 d-flex ms-3 flex-wrap">
     <% @restaurant.dishes.each do |dish|%>
       <article class="card ms-2 mt-2">
@@ -10,9 +33,9 @@
             <h3><%=dish.name%></h3>
             <h6>Price: <%=dish.price%> UAH</h6>
             <h6>Weight: <%= dish.weight%>g</h6>
+            <h6>Status <%= dish.status %></h6>
           </div>
         </div>
       </article>
     <% end %>
   </div>
-</div>
