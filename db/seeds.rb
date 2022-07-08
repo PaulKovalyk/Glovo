@@ -9,6 +9,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Restaurant.delete_all
+tag1 = Tag.create(title: 'Fast food')
+tag2 = Tag.create(title: 'Burgers')
+tag3 = Tag.create(title: 'Dessert')
+tag4 = Tag.create(title: 'Pizza')
+tag5 = Tag.create(title: 'Asia')
+tag6 = Tag.create(title: 'Sushi')
 r1 = Restaurant.create!(name: 'МакДональдз',
                         description:
       %(<p>
@@ -17,9 +23,7 @@ r1 = Restaurant.create!(name: 'МакДональдз',
       </p>),
                         image_url: 'mcdonalds.jpg',
                         address: 'вулиця Володимира Великого, 24А, Львів, Львівська область, 79000')
-tag1 = Tag.create(title: 'Fast food')
-tag2 = Tag.create(title: 'Burgers')
-tag6 = Tag.create(title: 'Dessert')
+
 dish1 = Dish.create(name: 'Big Mac', price: 65, weight: 150, category: 'main_dish')
 dish2 = Dish.create(name: 'Chiken Roll', price: 85, weight: 100, category: 'main_dish')
 dish3 = Dish.create(name: 'Fish Roll', price: 85, weight: 105, category: 'main_dish')
@@ -28,7 +32,7 @@ dish5 = Dish.create(name: 'MacFlurry', price: 65, weight: 110, category: 'desser
 dish6 = Dish.create(name: 'Ice Cream', price: 25, weight: 60, category: 'dessert')
 r1.tags << tag1
 r1.tags << tag2
-r1.tags << tag6
+r1.tags << tag3
 r1.dishes << dish1
 r1.dishes << dish2
 r1.dishes << dish3
@@ -50,10 +54,10 @@ r2 = Restaurant.create!(name: 'KFC',
         </p>},
                         image_url: 'kfc.png',
                         address: 'проспект Свободи, 19, Львів, Львівська область, 79000')
-tag3 = Tag.create(title: 'Fast food')
-tag4 = Tag.create(title: 'Burgers')
+
+r2.tags << tag1
+r2.tags << tag2
 r2.tags << tag3
-r2.tags << tag4
 dish1 = Dish.create(name: 'Bucket duet spicy', price: 165, weight: 290, category: 'main_dish')
 dish2 = Dish.create(name: '8 spicy wings', price: 125, weight: 120, category: 'main_dish')
 dish3 = Dish.create(name: '5 strpis', price: 95, weight: 60, category: 'main_dish')
@@ -75,10 +79,9 @@ r3 = Restaurant.create!(name: 'La Piec',
         </p>),
                         image_url: 'la.png',
                         address: 'проспект Свободи, 19, Львів, Львівська область, 79000')
-tag5 = Tag.create(title: 'Pizza')
-tag6 = Tag.create(title: 'Burgers')
-r3.tags << tag5
-r3.tags << tag6
+
+r3.tags << tag1
+r3.tags << tag4
 dish1 = Dish.create(name: 'La Piec Pizza', price: 230, weight: 480, category: 'pizza')
 dish2 = Dish.create(name: 'Quattro Formaggi', price: 241, weight: 450, category: 'pizza')
 dish3 = Dish.create(name: 'Capricciosa', price: 208, weight: 430, category: 'pizza')
@@ -100,8 +103,7 @@ r4 = Restaurant.create!(name: 'NOA',
             </p>),
                         image_url: 'noa_black.svg',
                         address: 'проспект Свободи, 19, Львів, Львівська область, 79000')
-tag5 = Tag.create(title: 'Asia')
-tag6 = Tag.create(title: 'Sushi')
+
 r4.tags << tag5
 r4.tags << tag6
 dish1 = Dish.create(name: 'Spicy tuna salad', price: 249, weight: 130, category: 'main_dish')

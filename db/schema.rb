@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_08_100312) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_08_105704) do
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -20,6 +25,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_100312) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_dishes_on_restaurant_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "quantity"
+    t.integer "dishes_id", null: false
+    t.integer "carts_id", null: false
+    t.integer "orders_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carts_id"], name: "index_line_items_on_carts_id"
+    t.index ["dishes_id"], name: "index_line_items_on_dishes_id"
+    t.index ["orders_id"], name: "index_line_items_on_orders_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -70,6 +88,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_100312) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "line_items", "carts", column: "carts_id"
+  add_foreign_key "line_items", "dishes", column: "dishes_id"
+  add_foreign_key "line_items", "orders", column: "orders_id"
   add_foreign_key "restaurant_tags", "restaurants"
   add_foreign_key "restaurant_tags", "tags"
 end

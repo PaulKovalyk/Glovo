@@ -2,14 +2,14 @@
 
 class DishesController < ApplicationController
   before_action :dish_params, only: %i[create index]
-  before_action :set_restaurant!, only: %i[create index]
+  before_action :set_restaurant!, only: %i[create index new]
 
   def index
-    @dishes_by_category = if params[:category]
-                            @restaurant.dishes.where(category: params[:category])
-                          else
-                            @restaurant.dishes
-                          end
+    if params[:category]
+      @dishes_by_category = @restaurant.dishes.where(category: params[:category])
+    else
+      @dishes_by_category=@restaurant.dishes
+   end
   end
 
   def create
