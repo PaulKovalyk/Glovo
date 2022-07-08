@@ -17,7 +17,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new restaurant_params
     if @restaurant.save!
-      flash[:success] = 'Restaurant created' # rubocop:disable Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      flash[:success] = 'Restaurant created'
       redirect_to root_path
     else
       render :new

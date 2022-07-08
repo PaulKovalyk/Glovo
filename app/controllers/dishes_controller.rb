@@ -14,7 +14,7 @@ class DishesController < ApplicationController
 
   def update
     if @dish.update(dish_params)
-      flash[:success] = 'Dish updated!' # rubocop:disable Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      flash[:success] = 'Dish updated!'
       redirect_to restaurant_path(@restaurant)
     else
       @dishes = Dish.order created_at: :desc
@@ -26,7 +26,7 @@ class DishesController < ApplicationController
     @dish = @restaurant.dishes.build(dish_params)
 
     if @dish.save
-      flash[:success] = 'Dish created!' # rubocop:disable Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      flash[:success] = 'Dish created!'
       redirect_to restaurant_path(@restaurant)
     else
       @dishes = Dish.order(created_at: :desc)
@@ -37,7 +37,7 @@ class DishesController < ApplicationController
   def destroy
     dish = @restaurant.dishes.find params[:id]
     dish.destroy
-    flash[:success] = 'Dish deleted' # rubocop:disable Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+    flash[:success] = 'Dish deleted'
     redirect_to restaurant_path(@restaurant)
   end
 
