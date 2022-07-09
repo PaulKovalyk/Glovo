@@ -7,13 +7,15 @@ class LineItemsController < ApplicationController
   def create
     dish = Dish.find(params[:dish_id])
 
-    @line_item = @cart.line_items.build(dish: dish)
+    @line_item = @cart.add_product(dish.id)
+
+
 
     if @line_item.save
       flash[:success] = 'Line item was successfully created'
-      redirect_to root_path
+      redirect_to @line_item.cart
     else
-      redirect_to
+      redirect_to root_path
     end
   end
 end

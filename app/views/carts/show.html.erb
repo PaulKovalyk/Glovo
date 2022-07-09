@@ -1,6 +1,6 @@
 <h2>Cart</h2>
 <ul>
 <% @cart.line_items.each do |item| %>
-<li><%= item.dish.name %></li>
+<li><%= item.quantity %> &times; <%=item.dish.name %></li>
 <% end %>
 </ul>
