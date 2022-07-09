@@ -49,6 +49,7 @@
             <h3><%=dish.name%></h3>
             <h6>Price: <%=dish.price%> UAH</h6>
             <h6>Weight: <%= dish.weight%>g</h6>
+            <%= button_to 'Add to Cart',line_items_path(dish_id: dish),remote: true %>
           </div>
         </div>
       </article>

@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class LineItem < ApplicationRecord
-  belongs_to :dishes
-  belongs_to :carts
-  belongs_to :orders
+  belongs_to :dish
+  belongs_to :cart
 end
