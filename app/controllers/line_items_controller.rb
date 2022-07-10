@@ -3,6 +3,7 @@
 class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create]
+  before_action :set_line_item, only: %i[ show edit update destroy ]
 
   def create
     dish = Dish.find(params[:dish_id])
@@ -12,7 +13,6 @@ class LineItemsController < ApplicationController
 
 
     if @line_item.save
-      flash[:success] = 'Line item was successfully created'
       redirect_to @line_item.cart
     else
       redirect_to root_path
@@ -20,6 +20,12 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
-    
+
+  end
+
+  private
+
+  def line_items_params
+    params.require(:line_item).permit(:dish_id)
   end
 end

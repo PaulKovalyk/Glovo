@@ -10,6 +10,15 @@ class CartsController < ApplicationController
     @carts = Cart.all
     @restaurants = Restaurant.all
   end
+  def destroy
+    @cart = Cart.find(params[:id])
+
+    @cart.destroy if @cart.id == session[:cart_id]
+      flash[:success] = 'Now you cart is empty'
+      redirect_to root_path
+   
+    
+  end
 
   private
 
