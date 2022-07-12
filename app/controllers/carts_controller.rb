@@ -4,7 +4,7 @@ class CartsController < ApplicationController
 
   def show
     @cart = Cart.find(params[:id])
-    
+    @order = Order.new
   end
   def index
     @carts = Cart.all

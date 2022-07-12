@@ -1,0 +1,19 @@
+ <%= form_with model: @order do |f| %>
+                          <div>
+                            <%= f.text_field :name%>
+                            <%= f.label :name%>
+                          </div>
+                          <div>
+                            <%= f.text_field :address%>
+                            <%= f.label :address%>
+                          </div>
+                          <div>
+                            <%= f.text_field :email%>
+                            <%= f.label :email%>
+                          </div>
+                          <div>
+                            <%= f.text_field :pay_type%>
+                            <%= f.label :pay_type%>
+                          </div>
+                           <%= f.submit %>
+                           <% end %>
