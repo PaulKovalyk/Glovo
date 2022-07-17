@@ -3,14 +3,12 @@
 class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create]
-  before_action :set_line_item, only: %i[ show edit update destroy ]
+  before_action :set_line_item, only: %i[destroy]
 
   def create
     dish = Dish.find(params[:dish_id])
 
     @line_item = @cart.add_product(dish.id)
-
-
 
     if @line_item.save
       redirect_to @line_item.cart
@@ -19,9 +17,7 @@ class LineItemsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
+  def destroy; end
 
   private
 

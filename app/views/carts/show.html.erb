@@ -25,9 +25,16 @@
                             src="/assets/kfc.png"
                             class="img-fluid rounded-3" alt="Ordering item" style="width: 65px;">
                             </div>
+                            <div>
+                            
+                             <div class="ms-3">
+                              <h5><%= item.dish.restaurant.name %></h5>
+                            </div>
                             <div class="ms-3">
                               <h5><%= item.quantity %> &times; <%= item.dish.name  %></h5>
                             </div>
+                          
+                          </div>
                           </div>
                           <div class="d-flex flex-row align-items-center">
                             <div style="width: 80px;">
@@ -66,17 +73,9 @@
                             <%= f.label :pay_type, class:"form-label"%>
                           </div>
                           <hr class="my-4">
-                          <div class="d-flex justify-content-between">
-                            <p class="mb-2">Order</p>
-                            <h6><%= number_to_currency(@cart.total_price, unit: "UAH", format: "%n %u") %></h6>
-                          </div>
-                          <div class="d-flex justify-content-between">
-                            <p class="mb-2">Delivery price</p>
-                            <h6>$50 UAH</h6>
-                          </div>
                           <div class="d-flex justify-content-between mb-4">
-                            <p class="mb-2">Total(Incl. delivery)</p>
-                            <h6><%= number_to_currency((@cart.total_price+50), unit: "UAH", format: "%n %u") %></h6>
+                            <p class="mb-2">Total</p>
+                            <h6><%= number_to_currency((@cart.total_price), unit: "UAH", format: "%n %u") %></h6>
                           </div>
                           <%= f.submit :Checkout,class:'btn btn-info btn-block btn-lg w-100 mt-2'  %>
                         <% end %>

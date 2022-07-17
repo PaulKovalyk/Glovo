@@ -3,18 +3,17 @@
 class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
-  validates :name, :address, :email, :pay_type,presence: true
+  validates :name, :address, :email, :pay_type, presence: true
 
   def add_line_items_from_cart(cart)
-   
-  
-   
+    order_price = 0
     cart.line_items.each do |item|
-      
-        item.update(cart_id: nil)
-        
-        self.line_items << item
-        
+      item.update(cart_id: nil)
+
+      line_items << item
+
+      order_price += item.total_price
     end
+    update(order_price: order_price)
   end
 end
