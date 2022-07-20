@@ -3,13 +3,10 @@
 class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: %i[new create index]
-  before_action :set_order, only: %i[create]
-  before_action :set_find_order, only: %i[destroy]
+
   def new
     @order = Order.new
   end
-
-  def show; end
 
   def index
     @orders = Order.order(created_at: :desc)
@@ -17,6 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.create(order_params)
     if @order.save
       @order.add_line_items_from_cart(@cart)
       Cart.destroy(session[:cart_id])
@@ -30,6 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    @order = Order.find(params[:id])
     if @order.ordered_recently?
       @order.destroy
       redirect_to orders_path
@@ -42,15 +41,7 @@ class OrdersController < ApplicationController
 
   private
 
-  def set_find_order
-    @order = Order.find(params[:id])
-  end
-
   def order_params
     params.require(:order).permit(:name, :address, :email, :pay_type, :id, :created_at)
-  end
-
-  def set_order
-    @order = Order.create(order_params)
   end
 end

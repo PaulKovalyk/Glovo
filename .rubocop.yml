@@ -23,4 +23,8 @@ Rails/I18nLocaleTexts:
   Enabled: false
 
 Metrics/AbcSize: 
-   Enabled: false
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+    

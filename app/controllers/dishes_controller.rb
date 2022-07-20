@@ -2,7 +2,7 @@
 
 class DishesController < ApplicationController
   before_action :dish_params, only: %i[create index]
-  before_action :set_restaurant!, only: %i[new create index]
+  before_action :set_restaurant, only: %i[new create index]
 
   def new
     @dish = Dish.new
@@ -34,7 +34,7 @@ class DishesController < ApplicationController
     params.permit(:name, :price, :weight, :category)
   end
 
-  def set_restaurant!
+  def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
 end

@@ -1,6 +1,6 @@
 <div class="container">
 
-<%= form_with(model: @dish,url:restaurant_dishes_path(restaurant_id: @restaurant.id)) do |f| %>
+<%= form_with url:restaurant_dishes_path(restaurant_id: @restaurant.id) do |f| %>
 
  <div>
     <%= f.label :name, style: "display: block" %>
@@ -27,16 +27,3 @@
   </div>
 <% end %> 
 </div>
-<% if @dish.errors.any? %>
-   <%= binding.pry %>
-    <div class="alert alert-danger">
-      <h2>
-        <%= pluralize(@dish.errors.count, "error") %> prohibited this question from being saved:
-      </h2>
-      <ul>
-        <% @dish.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
