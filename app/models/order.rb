@@ -16,4 +16,8 @@ class Order < ApplicationRecord
     end
     update(order_price: order_price)
   end
+
+  def ordered_recently?
+    created_at > 5.minutes.ago
+  end
 end

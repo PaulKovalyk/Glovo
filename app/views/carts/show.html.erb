@@ -11,8 +11,9 @@
                 <hr>
                 <div class="d-flex justify-content-between align-items-center mb-4">
                   <div>
-                    <p class="mb-1">Ordering cart</p>
+                    <p class="">Ordering cart</p>
                     <p>You have <%=@cart.total_quantity%> items in your cart</p>
+                    <p class='text-primary'>You can cancel your order if it was placed less than 5 minutes ago</p>
                   </div>
                 </div>
                 <% @cart.line_items.each do |item| %>

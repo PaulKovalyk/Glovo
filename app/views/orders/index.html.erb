@@ -41,6 +41,13 @@
                <p><%= order.pay_type %></p> 
                 <p><%= number_to_currency(order.order_price) %></p> 
               </div>
+              <div>
+              <%= button_to 'Delete', order,method: :delete, class:'btn btn-danger' %>
+              <%= Time.now.strftime('%H:%M')%>
+              <%= order.created_at.strftime('%H:%M') %>
+              </div>
+            </div>
+            <div>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: %i[new create index]
   before_action :set_order, only: %i[create]
-
+  before_action :set_find_order, only: %i[destroy]
   def new
     @order = Order.new
   end
@@ -16,7 +16,6 @@ class OrdersController < ApplicationController
     @line_items = LineItem.all
   end
 
-  # rubocop:disable  Metrics/AbcSize: Assignment Branch
   def create
     if @order.save
       @order.add_line_items_from_cart(@cart)
@@ -29,12 +28,26 @@ class OrdersController < ApplicationController
       redirect_to cart_path(@cart)
     end
   end
-  # rubocop:enable  Metrics/AbcSize: Assignment Branch
+
+  def destroy
+    if @order.ordered_recently?
+      @order.destroy
+      redirect_to orders_path
+      flash[:success] = 'Your order deleted'
+    else
+      redirect_to orders_path
+      flash[:danger] = 'The order cannot be canceled'
+    end
+  end
 
   private
 
+  def set_find_order
+    @order = Order.find(params[:id])
+  end
+
   def order_params
-    params.require(:order).permit(:name, :address, :email, :pay_type, :id)
+    params.require(:order).permit(:name, :address, :email, :pay_type, :id, :created_at)
   end
 
   def set_order
