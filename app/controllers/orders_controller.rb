@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     @line_items = LineItem.all
   end
 
+  # rubocop:disable  Metrics/AbcSize: Assignment Branch
   def create
     if @order.save
       @order.add_line_items_from_cart(@cart)
@@ -24,10 +25,11 @@ class OrdersController < ApplicationController
       redirect_to root_path
       flash[:success] = 'Thank you for your order'
     else
-      redirect_to root_path
-      flash[:danger] = 'Something going wrong'
+      flash[:danger] = @order.errors.full_messages.join(', ')
+      redirect_to cart_path(@cart)
     end
   end
+  # rubocop:enable  Metrics/AbcSize: Assignment Branch
 
   private
 
