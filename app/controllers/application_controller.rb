@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
- 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   def routing_error
     redirect_to user_session_path
   end
@@ -18,7 +17,4 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(_resource_or_scope)
     new_user_session_path
   end
-
-  
-  
 end

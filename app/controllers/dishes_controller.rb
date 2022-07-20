@@ -2,7 +2,11 @@
 
 class DishesController < ApplicationController
   before_action :dish_params, only: %i[create index]
-  before_action :set_restaurant!, only: %i[create index]
+  before_action :set_restaurant, only: %i[new create index]
+
+  def new
+    @dish = Dish.new
+  end
 
   def index
     @dishes_by_category = if params[:category]
@@ -19,18 +23,18 @@ class DishesController < ApplicationController
       flash[:success] = 'Dish created!'
       redirect_to restaurant_path(@restaurant)
     else
-      @dishes = Dish.order(created_at: :desc)
-      render 'restaurants/show'
+      flash[:danger] = @dish.errors.full_messages.join(', ')
+      redirect_to new_restaurant_dish_path(@restaurant, @dish)
     end
   end
 
   private
 
   def dish_params
-    params.permit(:name, :price, :weight, :category, :restaurant_id)
+    params.permit(:name, :price, :weight, :category)
   end
 
-  def set_restaurant!
-    @restaurant = Restaurant.find params[:restaurant_id]
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 end
