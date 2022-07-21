@@ -62,7 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_104022) do
     t.string "name", null: false
     t.string "address", null: false
     t.string "description", null: false
-    t.string "image_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false

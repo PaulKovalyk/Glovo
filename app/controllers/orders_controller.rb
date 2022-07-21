@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   before_action :set_cart, only: %i[new create index]
 
   def new
+    authorize Order
     @order = Order.new
   end
 
@@ -15,6 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    authorize Order
     @order = Order.create(order_params)
     if @order.save
       @order.add_line_items_from_cart(@cart)

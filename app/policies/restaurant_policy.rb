@@ -1,9 +1,23 @@
+# frozen_string_literal: true
+
 class RestaurantPolicy < ApplicationPolicy
+  class Scope < Scope
     def resolve
-      if user.admin?
-        scope.where(:)
-      else
+      if @user.nil?
         scope.all
+      elsif !@user.owner?
+        scope.all
+      elsif @user.owner?
+        scope.where(user_id: @user.id)
       end
     end
+  end
+
+  def create?
+    @user.owner?
+  end
+
+  def new?
+    create?
+  end
 end

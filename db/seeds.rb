@@ -8,7 +8,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-current_user = User.create(first_name: 'Paul', last_name: 'Kovalyk', email: 'paulkovalyk2@gmail.com', password: 'password', password_confirmation: 'password', owner: true)
+current_user = User.create(first_name: 'Paul', last_name: 'Kovalyk', email: 'paulkovalyk2@gmail.com',
+                           password: 'password', password_confirmation: 'password', owner: true)
 Restaurant.delete_all
 tag1 = Tag.create(title: 'Fast food')
 tag2 = Tag.create(title: 'Burgers')
@@ -22,7 +23,7 @@ r1 = Restaurant.create!(name: 'МакДональдз',
         МакДо́нальдз — американська корпорація, до 2010 найбільша у світі мережа закладів швидкого харчування.
         Входить в список «Fortune Global 500» 2009 року. У 2020 у рейтингу 10 кращих брендів.
       </p>),
-                        image_url: 'mcdonalds.jpg',
+
                         address: 'вулиця Володимира Великого, 24А, Львів, Львівська область, 79000',
                         user_id: current_user.id)
 dish1 = Dish.create(name: 'Big Mac', price: 65, weight: 150, category: 'main_dish')
@@ -54,7 +55,7 @@ r2 = Restaurant.create!(name: 'KFC',
            в яких щодня обслуговуються близько 12 000 000 клієнтів.
           Головний офіс знаходиться в Луїсвіллі, штат Кентуккі.
         </p>},
-                        image_url: 'kfc.png',
+
                         address: 'проспект Свободи, 19, Львів, Львівська область, 79000',
                         user_id: current_user.id)
 
@@ -80,7 +81,7 @@ r3 = Restaurant.create!(name: 'La Piec',
         у всьому світі після ресторанної мережі «Subway».
         Входить в список «Fortune Global 500» 2009 року. У 2020 у рейтингу 10 кращих брендів.
         </p>),
-                        image_url: 'la.png',
+
                         address: 'проспект Свободи, 19, Львів, Львівська область, 79000',
                         user_id: current_user.id)
 
@@ -105,7 +106,7 @@ r4 = Restaurant.create!(name: 'NOA',
              у всьому світі після ресторанної мережі «Subway».
             Входить в список «Fortune Global 500» 2009 року. У 2020 у рейтингу 10 кращих брендів.
             </p>),
-                        image_url: 'noa_black.svg',
+
                         address: 'проспект Свободи, 19, Львів, Львівська область, 79000',
                         user_id: current_user.id)
 

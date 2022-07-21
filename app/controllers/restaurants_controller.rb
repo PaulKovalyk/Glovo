@@ -2,10 +2,11 @@
 
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
+
   before_action :set_restaurant, only: %i[show]
   before_action :fetch_tags, only: %i[new]
   def index
-    @restaurants = Restaurant.order(created_at: :desc)
+    @restaurants = policy_scope(Restaurant).order(created_at: :desc)
   end
 
   def new
@@ -15,7 +16,8 @@ class RestaurantsController < ApplicationController
   def show; end
 
   def create
-    @restaurant = Restaurant.new restaurant_params
+    authorize Restaurant
+    @restaurant = current_user.restaurants.build(restaurant_params)
     if @restaurant.save!
       flash[:success] = 'Restaurant created'
       redirect_to root_path
@@ -27,7 +29,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :description, :address, :image_url, tag_ids: [])
+    params.require(:restaurant).permit(:name, :description, :address, tag_ids: [])
   end
 
   def set_restaurant
