@@ -8,6 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+current_user = User.create(first_name: 'Paul', last_name: 'Kovalyk', email: 'paulkovalyk2@gmail.com', password: 'password', password_confirmation: 'password', owner: true)
 Restaurant.delete_all
 tag1 = Tag.create(title: 'Fast food')
 tag2 = Tag.create(title: 'Burgers')
@@ -22,8 +23,8 @@ r1 = Restaurant.create!(name: 'МакДональдз',
         Входить в список «Fortune Global 500» 2009 року. У 2020 у рейтингу 10 кращих брендів.
       </p>),
                         image_url: 'mcdonalds.jpg',
-                        address: 'вулиця Володимира Великого, 24А, Львів, Львівська область, 79000')
-
+                        address: 'вулиця Володимира Великого, 24А, Львів, Львівська область, 79000',
+                        user_id: current_user.id)
 dish1 = Dish.create(name: 'Big Mac', price: 65, weight: 150, category: 'main_dish')
 dish2 = Dish.create(name: 'Chiken Roll', price: 85, weight: 100, category: 'main_dish')
 dish3 = Dish.create(name: 'Fish Roll', price: 85, weight: 105, category: 'main_dish')
@@ -39,6 +40,7 @@ r1.dishes << dish3
 r1.dishes << dish4
 r1.dishes << dish5
 r1.dishes << dish6
+
 r2 = Restaurant.create!(name: 'KFC',
                         description:
         %{<p>
@@ -53,7 +55,8 @@ r2 = Restaurant.create!(name: 'KFC',
           Головний офіс знаходиться в Луїсвіллі, штат Кентуккі.
         </p>},
                         image_url: 'kfc.png',
-                        address: 'проспект Свободи, 19, Львів, Львівська область, 79000')
+                        address: 'проспект Свободи, 19, Львів, Львівська область, 79000',
+                        user_id: current_user.id)
 
 r2.tags << tag1
 r2.tags << tag2
@@ -78,7 +81,8 @@ r3 = Restaurant.create!(name: 'La Piec',
         Входить в список «Fortune Global 500» 2009 року. У 2020 у рейтингу 10 кращих брендів.
         </p>),
                         image_url: 'la.png',
-                        address: 'проспект Свободи, 19, Львів, Львівська область, 79000')
+                        address: 'проспект Свободи, 19, Львів, Львівська область, 79000',
+                        user_id: current_user.id)
 
 r3.tags << tag1
 r3.tags << tag4
@@ -102,7 +106,8 @@ r4 = Restaurant.create!(name: 'NOA',
             Входить в список «Fortune Global 500» 2009 року. У 2020 у рейтингу 10 кращих брендів.
             </p>),
                         image_url: 'noa_black.svg',
-                        address: 'проспект Свободи, 19, Львів, Львівська область, 79000')
+                        address: 'проспект Свободи, 19, Львів, Львівська область, 79000',
+                        user_id: current_user.id)
 
 r4.tags << tag5
 r4.tags << tag6

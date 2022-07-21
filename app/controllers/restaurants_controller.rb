@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user!, except: %i[show index]
   before_action :set_restaurant, only: %i[show]
   before_action :fetch_tags, only: %i[new]
   def index

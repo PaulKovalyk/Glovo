@@ -2,6 +2,7 @@
 
 class OrdersController < ApplicationController
   include CurrentCart
+  before_action :authenticate_user!
   before_action :set_cart, only: %i[new create index]
 
   def new
