@@ -49,7 +49,12 @@
             <h3><%=dish.name%></h3>
             <h6>Price: <%=dish.price%> UAH</h6>
             <h6>Weight: <%= dish.weight%>g</h6>
+          
+           <% if current_user == nil || !current_user.owner? %>
             <%= button_to 'Add to Cart',line_items_path(dish_id: dish),remote: true %>
+            <% elsif current_user.owner? %>
+            <%= link_to 'Edit', edit_restaurant_dish_path(@restaurant, dish) %>
+            <% end %>
           </div>
         </div>
       </article>

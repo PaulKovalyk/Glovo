@@ -5,10 +5,12 @@ class DishesController < ApplicationController
   before_action :set_restaurant, only: %i[new create index]
 
   def new
+    authorize Dish
     @dish = Dish.new
   end
 
   def index
+    authorize Dish
     @dishes_by_category = if params[:category]
                             @restaurant.dishes.where(category: params[:category])
                           else
@@ -17,6 +19,7 @@ class DishesController < ApplicationController
   end
 
   def create
+    authorize Dish
     @dish = @restaurant.dishes.build(dish_params)
 
     if @dish.save
@@ -31,7 +34,7 @@ class DishesController < ApplicationController
   private
 
   def dish_params
-    params.permit(:name, :price, :weight, :category)
+    params.permit(:name, :price, :weight, :category, :id)
   end
 
   def set_restaurant

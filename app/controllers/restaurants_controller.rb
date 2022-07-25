@@ -3,8 +3,8 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
 
-  before_action :set_restaurant, only: %i[show]
-  before_action :fetch_tags, only: %i[new]
+  before_action :set_restaurant, only: %i[show edit update]
+  before_action :fetch_tags, only: %i[new edit]
   def index
     @restaurants = policy_scope(Restaurant).order(created_at: :desc)
   end
@@ -12,6 +12,7 @@ class RestaurantsController < ApplicationController
   def new
     @restaurant = Restaurant.new
   end
+
 
   def show; end
 
@@ -23,6 +24,25 @@ class RestaurantsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def edit
+    authorize Restaurant
+    if (@restaurant.user_id == current_user.id)
+    else
+      flash[:success] = 'Wrong restaurant'
+      redirect_to root_path
+    end
+  end
+
+  def update
+    authorize Restaurant
+    if @restaurant.update restaurant_params
+      flash[:success] = 'Restaurant updated'
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 

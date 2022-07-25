@@ -11,8 +11,10 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.order(created_at: :desc)
+    authorize Order
+    @orders = policy_scope(Order).order(created_at: :desc)
     @line_items = LineItem.all
+    
   end
 
   def create
@@ -32,7 +34,9 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
+    authorize Order
     if @order.ordered_recently?
+     
       @order.destroy
       redirect_to orders_path
       flash[:success] = 'Your order deleted'

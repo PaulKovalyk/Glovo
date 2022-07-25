@@ -3,8 +3,9 @@
 class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create]
-
+  before_action :authenticate_user!
   def create
+    authorize LineItem
     dish = Dish.find(params[:dish_id])
 
     @line_item = @cart.add_product(dish.id)
@@ -17,6 +18,7 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
+    authorize LineItem
     @line_item = LineItem.find(params[:id])
     @line_item.destroy
     redirect_to(@line_item.cart)

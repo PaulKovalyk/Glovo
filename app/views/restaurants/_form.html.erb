@@ -1,26 +1,28 @@
-
+<div class="container_login">
+<h1 class="btn btn-primary btn-block btn-lg w-100 mt-2">New restaurant</h1>
 <%= form_with model: @restaurant do |f| %>
  <div>
-    <%= f.label :name, style: "display: block" %>
-    <%= f.text_field :name%>
+    <%= f.text_field :name,class:"form-control " %>
+    <%= f.label :name , class:"form-label"%>
   </div>
 
   <div>
-    <%= f.label :description, style: "display: block" %>
-    <%= f.text_area :description, rows: 6 %>
+    <%= f.text_area :description,class:"form-control " %>
+    <%= f.label :description, class:"form-label"%>
   </div>
 
   <div>
-    <%= f.label :address, style: "display: block" %>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, class:"form-control " %>
+    <%= f.label :address, class:"form-label"%>
   </div>
 
   <div>
-    <%= f.label :tags, style: "display: block" %>
-    <%= f.collection_select :tag_ids, @tags, :id,:title,{},multiple:  true %>
+    <%= f.collection_select :tag_ids, @tags, :id,:title,{},multiple:  true , class: 'form-control col-sm-8' , style: 'width:100%'%>
+    <%= f.label :tags, class:"form-label"%>
   </div>
 
   <div>
-    <%= f.submit %>
+    <%= f.submit :Save,class:'btn btn-info btn-block btn-lg w-100 mt-2'%>
   </div>
 <% end %> 
+</div>

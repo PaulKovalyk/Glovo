@@ -7,11 +7,6 @@ class CartsController < ApplicationController
     @order = Order.new
   end
 
-  def index
-    @carts = Cart.all
-    @restaurants = Restaurant.all
-  end
-
   def destroy
     @cart.destroy if @cart.id == session[:cart_id]
     flash[:success] = 'Now you cart is empty'

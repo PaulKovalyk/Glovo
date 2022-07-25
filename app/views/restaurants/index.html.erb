@@ -22,8 +22,17 @@
         </div>
       </div>
       
+  
+         
+    
     </div>
-       
+          <div class="mb-2"> 
+         
+<%= link_to 'Show', restaurant_dishes_path(restaurant.id),class:'ms-3 btn btn-warning mt-4 text-decoration-none'%>
+<%= link_to 'Edit',edit_restaurant_path(restaurant.id),class:'ms-2 btn btn-warning  mt-4 text-decoration-none'%>
+<%= link_to 'Add dish',new_restaurant_dish_path(restaurant.id),class:'ms-2 btn btn-warning  mt-4 text-decoration-none'%>
+        </div> 
+
     </article>
 
   </div>
