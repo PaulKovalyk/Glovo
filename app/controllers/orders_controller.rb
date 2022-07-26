@@ -12,9 +12,8 @@ class OrdersController < ApplicationController
 
   def index
     authorize Order
-    @orders = policy_scope(Order).order(created_at: :desc)
+    @orders = Order.order(created_at: :desc)
     @line_items = LineItem.all
-    
   end
 
   def create
@@ -36,7 +35,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     authorize Order
     if @order.ordered_recently?
-     
+
       @order.destroy
       redirect_to orders_path
       flash[:success] = 'Your order deleted'

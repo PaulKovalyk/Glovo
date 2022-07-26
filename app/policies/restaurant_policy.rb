@@ -3,11 +3,10 @@
 class RestaurantPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if @user.nil?
+      if @user.nil? || !@user.owner?
         scope.all
-      elsif !@user.owner?
-        scope.all
-      elsif @user.owner?
+      else
+        @user.owner?
         scope.where(user_id: @user.id)
       end
     end

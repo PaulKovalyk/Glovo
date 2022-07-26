@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class DishesController < ApplicationController
-  before_action :dish_params, only: %i[create index]
-  before_action :set_restaurant, only: %i[new create index]
-
+  before_action :set_restaurant, only: %i[new create index edit update]
+  before_action :set_dish, only: %i[edit update]
   def new
     authorize Dish
     @dish = Dish.new
@@ -16,6 +15,17 @@ class DishesController < ApplicationController
                           else
                             @restaurant.dishes
                           end
+  end
+
+  def edit; end
+
+  def update
+    if @dish.update(dish_params_require)
+      flash[:success] = 'Dish updated'
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def create
@@ -33,11 +43,19 @@ class DishesController < ApplicationController
 
   private
 
+  def dish_params_require
+    params.require(:dish).permit(:name, :price, :weight, :category, :id, :restaurant_id)
+  end
+
   def dish_params
-    params.permit(:name, :price, :weight, :category, :id)
+    params.permit(:name, :price, :weight, :category, :id, :restaurant_id)
   end
 
   def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
+  end
+
+  def set_dish
+    @dish = @restaurant.dishes.find(params[:id])
   end
 end

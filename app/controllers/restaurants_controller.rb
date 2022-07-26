@@ -13,7 +13,6 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new
   end
 
-
   def show; end
 
   def create
@@ -29,11 +28,10 @@ class RestaurantsController < ApplicationController
 
   def edit
     authorize Restaurant
-    if (@restaurant.user_id == current_user.id)
-    else
-      flash[:success] = 'Wrong restaurant'
-      redirect_to root_path
-    end
+    return if @restaurant.user_id == current_user.id
+
+    redirect_to root_path
+    flash[:danger] = 'Wrong restaurant'
   end
 
   def update

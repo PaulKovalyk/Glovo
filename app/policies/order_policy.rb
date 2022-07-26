@@ -1,16 +1,6 @@
-class OrderPolicy < ApplicationPolicy
-  class Scope < Scope
-      def resolve
-        if @user.owner?
-          scope.where(line_items: @user.restaurants.map{|r| r.dishes.pluck(:id) }.flatten )
-        elsif !@user.owner?
-          scope.all
-       end
-        
-    end
-  end
-  
+# frozen_string_literal: true
 
+class OrderPolicy < ApplicationPolicy
   def create?
     !@user.owner?
   end
