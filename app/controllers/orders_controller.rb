@@ -12,17 +12,19 @@ class OrdersController < ApplicationController
 
   def index
     authorize Order
-    @orders = Order.order(created_at: :desc)
-    @line_items = LineItem.all
+    @orders = policy_scope(Order).order(created_at: :desc)
   end
 
   def create
     authorize Order
-    @order = Order.create(order_params)
+    @order = current_user.orders.new(order_params)
     if @order.save
       @order.add_line_items_from_cart(@cart)
+     
+      
       Cart.destroy(session[:cart_id])
       session[:card_id] = nil
+  
       redirect_to root_path
       flash[:success] = 'Thank you for your order'
     else
@@ -33,21 +35,27 @@ class OrdersController < ApplicationController
 
   def destroy
     @order = Order.find(params[:id])
-    authorize Order
-    if @order.ordered_recently?
-
+    authorize @order
+    if current_user.owner?
+      @order.destroy
+      flash[:success] = 'Your order deleted'
+    elsif @order.ordered_recently?
       @order.destroy
       redirect_to orders_path
       flash[:success] = 'Your order deleted'
-    else
+    elsif
       redirect_to orders_path
       flash[:danger] = 'The order cannot be canceled'
     end
   end
 
+  
+
   private
 
   def order_params
-    params.require(:order).permit(:name, :address, :email, :pay_type, :id, :created_at)
+    params.require(:order).permit(:name, :address, :email, :pay_type, :created_at)
   end
+
+  
 end

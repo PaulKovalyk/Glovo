@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_104022) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_26_141649) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_104022) do
     t.string "pay_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "restaurant_tags", force: :cascade do |t|

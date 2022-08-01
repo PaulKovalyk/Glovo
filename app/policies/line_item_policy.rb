@@ -5,7 +5,7 @@ class LineItemPolicy < ApplicationPolicy
   end
 
   def create?
-    !@user.owner?
+    !@user.owner? 
   end
 
   def new?
@@ -13,6 +13,6 @@ class LineItemPolicy < ApplicationPolicy
   end
 
   def destroy?
-    !@user.owner?
+    @user.owner? || !@user.owner?
   end
 end

@@ -13,7 +13,15 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new
   end
 
-  def show; end
+  def show
+    
+    
+    rest = Restaurant.find_by(id: params[:id])
+    
+    @line_items = rest.dishes.map{|d| d.line_items}.flatten
+    @orders = @line_items.map{|i| i.order}.flatten
+    
+  end
 
   def create
     authorize Restaurant
@@ -27,7 +35,7 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    authorize Restaurant
+    authorize @restaurant
     return if @restaurant.user_id == current_user.id
 
     redirect_to root_path
@@ -35,7 +43,7 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    authorize Restaurant
+    authorize @restaurant
     if @restaurant.update restaurant_params
       flash[:success] = 'Restaurant updated'
       redirect_to root_path
