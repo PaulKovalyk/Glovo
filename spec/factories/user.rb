@@ -1,5 +1,4 @@
-require 'factory_bot'
-require 'faker'
+
 
 FactoryBot.define do
     factory :user do

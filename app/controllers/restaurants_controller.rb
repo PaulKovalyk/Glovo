@@ -31,11 +31,12 @@ class RestaurantsController < ApplicationController
   def create
     authorize Restaurant
     @restaurant = current_user.restaurants.build(restaurant_params)
-    if @restaurant.save!
+    if @restaurant.save
       flash[:success] = 'Restaurant created'
       redirect_to root_path
     else
-      render :new
+      flash[:danger] = @restaurant.errors.full_messages.join(', ')
+      redirect_to new_restaurant_path
     end
   end
 
@@ -53,7 +54,7 @@ class RestaurantsController < ApplicationController
       flash[:success] = 'Restaurant updated'
       redirect_to root_path
     else
-      render :edit
+      redirect_to edit_restaurant_path
     end
   end
 
@@ -64,7 +65,7 @@ class RestaurantsController < ApplicationController
   end
 
   def set_restaurant
-    @restaurant = Restaurant.find params[:id]
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def fetch_tags
