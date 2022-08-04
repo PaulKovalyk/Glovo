@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class RestaurantsController < ApplicationController
-  before_action :authenticate_user!, except: %i[show index]
-
+  before_action :authenticate_user!, except: %i[index]
   before_action :set_restaurant, only: %i[show edit update]
   before_action :fetch_tags, only: %i[new edit]
   def index
@@ -10,17 +9,23 @@ class RestaurantsController < ApplicationController
   end
 
   def new
+    authorize Restaurant
     @restaurant = Restaurant.new
   end
 
   def show
-    
-    
-    rest = Restaurant.find_by(id: params[:id])
-    
-    @line_items = rest.dishes.map{|d| d.line_items}.flatten
-    @orders = @line_items.map{|i| i.order}.flatten
-    
+    @rest = policy_scope(Restaurant).find_by(id: params[:id])
+    if @rest.nil?
+      redirect_to root_path
+    else
+      @line_items = @rest.dishes.map(&:line_items).flatten
+      @orders = if params[:mark] == 'active'
+
+                  Order.active.where(id: @line_items.map(&:order_id))
+                else
+                  Order.completed.where(id: @line_items.map(&:order_id))
+                end
+    end
   end
 
   def create

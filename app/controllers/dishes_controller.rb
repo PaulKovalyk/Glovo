@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DishesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_restaurant, only: %i[new create index edit update]
   before_action :set_dish, only: %i[edit update]
   def new
@@ -17,9 +18,12 @@ class DishesController < ApplicationController
                           end
   end
 
-  def edit; end
+  def edit
+    authorize @dish
+  end
 
   def update
+    authorize @dish
     if @dish.update(dish_params_require)
       flash[:success] = 'Dish updated'
       redirect_to root_path

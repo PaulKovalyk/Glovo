@@ -12,19 +12,15 @@ class RestaurantPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    @user.owner?
+  end
+
   def create?
     @user.owner?
   end
 
-  def new?
-    create?
-  end
-
   def update?
     @user.owner?
-  end
-
-  def edit?
-    update?
   end
 end

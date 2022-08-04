@@ -20,8 +20,6 @@
             <li><%= link_to 'MyOrders', orders_path,
            class: 'nav-link px-2 text-white justify-content-center' %></li>
            <% elsif current_user.owner? %>
-           <li><%= link_to 'Orders', orders_path,
-           class: 'nav-link px-2 text-white justify-content-center'%></li>
            <li><%= link_to 'Add Restaurant', new_restaurant_path,
            class: 'nav-link px-2 text-white justify-content-center'%></li>
            <% end %>

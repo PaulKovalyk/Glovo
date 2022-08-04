@@ -12,15 +12,10 @@ class LineItem < ApplicationRecord
   end
 
   def line_items_price
-    
     order_price = 0
     line_items.each do |item|
-     
-      if item.dish.restaurant.user_id == current_user.id
-      order_price += item.total_price 
-      end
+      order_price += item.total_price if item.dish.restaurant.user_id == current_user.id
     end
     order_price
-   
   end
 end
