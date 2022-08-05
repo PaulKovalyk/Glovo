@@ -23,4 +23,8 @@ class OrderPolicy < ApplicationPolicy
   def destroy?
     @user.owner? || !@user.owner?
   end
+
+  def update?
+    !@user.owner?
+  end
 end

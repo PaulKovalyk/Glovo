@@ -1,8 +1,8 @@
 FactoryBot.define do
     factory :line_item do
-      dish_id { 1 }
-     cart_id { 1}
-     quantity{ 1 }
-     order_id {1}
+      dish_id { }
+     cart_id { }
+     quantity{ }
+     order_id { }
     end
   end

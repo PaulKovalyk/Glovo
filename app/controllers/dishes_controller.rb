@@ -28,7 +28,7 @@ class DishesController < ApplicationController
       flash[:success] = 'Dish updated'
       redirect_to root_path
     else
-      render :edit
+      redirect_to edit_restaurant_dish_path
     end
   end
 
@@ -38,7 +38,7 @@ class DishesController < ApplicationController
 
     if @dish.save
       flash[:success] = 'Dish created!'
-      redirect_to restaurant_path(@restaurant)
+      redirect_to restaurant_dishes_path
     else
       flash[:danger] = @dish.errors.full_messages.join(', ')
       redirect_to new_restaurant_dish_path(@restaurant, @dish)

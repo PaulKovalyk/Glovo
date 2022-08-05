@@ -3,13 +3,10 @@
 class OrdersController < ApplicationController
   include CurrentCart
   before_action :authenticate_user!
-  before_action :set_cart, only: %i[new create index]
+  before_action :set_cart, only: %i[create index]
   before_action :set_order, only: %i[edit update destroy]
-  before_action :set_restaurant, only: %i[edit update destroy]
-  def new
-    authorize Order
-    @order = Order.new
-  end
+  before_action :set_restaurant, only: %i[edit update ]
+ 
 
   def index
     authorize Order
@@ -40,9 +37,9 @@ class OrdersController < ApplicationController
       flash[:success] = 'Your order deleted'
     elsif @order.ordered_recently?
       @order.destroy
-      redirect_to restaurant_path(@restaurant)
+      redirect_to orders_path
       flash[:success] = 'Your order deleted'
-    elsif redirect_to restaurant_path(@restaurant)
+    elsif redirect_to orders_path
       flash[:danger] = 'The order cannot be canceled'
     end
   end
@@ -58,7 +55,7 @@ class OrdersController < ApplicationController
     else
       flash[:danger] = 'The order cannot be updated'
     end
-    redirect_to restaurant_path(@restaurant)
+    redirect_to orders_path
   end
 
   private

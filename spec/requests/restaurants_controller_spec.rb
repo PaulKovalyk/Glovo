@@ -30,7 +30,6 @@ RSpec.describe RestaurantsController, type: :controller do
     end
 end
 
-
   
   describe 'GET /create' do
     let(:valid_params) do
@@ -75,5 +74,7 @@ end
         end
       end
     end
+
+  
 
 end

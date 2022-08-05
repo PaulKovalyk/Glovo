@@ -1,0 +1,28 @@
+<div class="container_login">
+<h1 class="btn btn-primary btn-block btn-lg w-100 mt-2">New restaurant</h1>
+<%= form_with model: @order do |f| %>
+ <div>
+    <%= f.text_field :name,class:"form-control " %>
+    <%= f.label :name , class:"form-label"%>
+  </div>
+
+  <div>
+    <%= f.text_area :address,class:"form-control " %>
+    <%= f.label :address, class:"form-label"%>
+  </div>
+
+  <div>
+    <%= f.text_field :email, class:"form-control " %>
+    <%= f.label :email, class:"form-label"%>
+  </div>
+
+  <div>
+    <%= f.text_field :pay_type, class:"form-control " %>
+    <%= f.label :pay_type, class:"form-label"%>
+  </div>
+
+  <div>
+    <%= f.submit :Save,class:'btn btn-info btn-block btn-lg w-100 mt-2'%>
+  </div>
+<% end %> 
+</div>
