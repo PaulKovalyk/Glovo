@@ -23,4 +23,8 @@ class RestaurantPolicy < ApplicationPolicy
   def update?
     @user.owner?
   end
+
+  def edit?
+    record.user == @user
+  end
 end

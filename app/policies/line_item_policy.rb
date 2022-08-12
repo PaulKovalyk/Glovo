@@ -9,6 +9,6 @@ class LineItemPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.owner? || !@user.owner?
+    !@user.nil?
   end
 end

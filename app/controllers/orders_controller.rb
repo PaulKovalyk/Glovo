@@ -2,11 +2,9 @@
 
 class OrdersController < ApplicationController
   include CurrentCart
-  before_action :authenticate_user!
   before_action :set_cart, only: %i[create index]
   before_action :set_order, only: %i[edit update destroy]
-  before_action :set_restaurant, only: %i[edit update ]
- 
+  before_action :set_restaurant, only: %i[edit update]
 
   def index
     authorize Order

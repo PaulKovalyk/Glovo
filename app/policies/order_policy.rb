@@ -17,14 +17,14 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def index?
-    @user.owner? || !@user.owner?
+    !@user.nil?
   end
 
   def destroy?
-    @user.owner? || !@user.owner?
+    !@user.nil?
   end
 
   def update?
-    !@user.owner?
+    !@user.nil?
   end
 end

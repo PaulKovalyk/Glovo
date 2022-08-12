@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class RestaurantsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_restaurant
+  skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_restaurant, only: %i[show edit update]
   before_action :fetch_tags, only: %i[new edit]
   def index
@@ -42,10 +43,7 @@ class RestaurantsController < ApplicationController
 
   def edit
     authorize @restaurant
-    return if @restaurant.user_id == current_user.id
-
-    redirect_to root_path
-    flash[:danger] = 'Wrong restaurant'
+    nil
   end
 
   def update
@@ -70,5 +68,10 @@ class RestaurantsController < ApplicationController
 
   def fetch_tags
     @tags = Tag.all
+  end
+
+  def invalid_restaurant
+    logger.error "Attempt to access invalid restaurant #{params[:id]}"
+    redirect_to root_url, notice: 'Invalid restaurant'
   end
 end

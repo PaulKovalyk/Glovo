@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DishesController < ApplicationController
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_restaurant, only: %i[new create index edit update]
   before_action :set_dish, only: %i[edit update]
   def new
