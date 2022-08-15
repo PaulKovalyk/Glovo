@@ -1,8 +1,13 @@
 <% if user_signed_in? %>
   <div style="width: 33%" class="hehe dropdown d-flex justify-content-end">
     <a class="hehe-link tn dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-      <div class='h5 d-inline text-success '><%= current_user.first_name %></div>
+      
+      <div class=' h5 d-inline text-success '>
+      <%= image_tag(current_user.avatar.url, class:'avatar_size rounded-circle shadow-4"') if current_user.avatar? %>
+      <%= current_user.first_name %>
+      </div>
     </a>
+    
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <li><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
       <li><%= link_to 'Edit profile', edit_user_registration_path(current_user), class: "dropdown-item" %></li>
@@ -15,3 +20,4 @@
   <li><%= link_to 'Log In', new_user_session_path, 
             class: 'nav-link px-2 text-white' %></li>
 <% end %>
+

@@ -18,7 +18,18 @@
     <%= f.label :status, style: "display: block" %>
   <%=f.select :category, Dish.categories.keys%>
   </div>
-
+<div>
+      <%= f.file_field :image_dish %>
+    </div>
+    <div>
+      <%= image_tag(@dish.image_dish.url, class:'image_size form-control ') if @dish.image_dish?%>
+    </div>
+    <p>
+      <label>
+        <%= f.check_box :remove_image_dish %>
+        Remove image
+      </label>
+    </p>
   <div>
     <%= f.submit %>
   </div>

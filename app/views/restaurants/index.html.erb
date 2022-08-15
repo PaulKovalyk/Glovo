@@ -7,7 +7,7 @@
   <div class="d-flex ">
     <article class="card mb-3 container_restaurants bg-info">
       <div class="card-body d-flex">
-        <img src="https://images.unsplash.com/flagged/photo-1556669546-b1f29875df1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" width="250px">
+        <%= image_tag(restaurant.image.url, class:'image_size') if restaurant.image? %>
         <div class="ms-4">
           <h2 ><%= link_to restaurant.name, restaurant_dishes_path(restaurant),class:"text-warning bg-body text-decoration-none border border-2"%></h2>
           <section class="card-text">
@@ -20,11 +20,11 @@
         </div>
       </div>
       <div class="mb-2">
-         <% if current_user == nil || !current_user.owner? %>
-        <%= link_to 'Show', restaurant_dishes_path(restaurant.id),class:'ms-3 btn btn-warning mt-4 text-decoration-none'%>
+        <% if current_user == nil || !current_user.owner? %>
+          <%= link_to 'Show', restaurant_dishes_path(restaurant.id),class:'ms-3 btn btn-warning mt-4 text-decoration-none'%>
         <% else %>
-         <%= link_to 'Show', restaurant_dishes_path(restaurant.id),class:'ms-3 btn btn-warning mt-4 text-decoration-none'%>
-         <%= link_to 'Edit',edit_restaurant_path(restaurant.id),class:'ms-2 btn btn-warning  mt-4 text-decoration-none'%>
+          <%= link_to 'Show', restaurant_dishes_path(restaurant.id),class:'ms-3 btn btn-warning mt-4 text-decoration-none'%>
+          <%= link_to 'Edit',edit_restaurant_path(restaurant.id),class:'ms-2 btn btn-warning  mt-4 text-decoration-none'%>
           <%= link_to 'Add dish',new_restaurant_dish_path(restaurant.id),class:'ms-2 btn btn-warning  mt-4 text-decoration-none'%>
           <%= link_to 'Orders',"#{restaurant_path(restaurant)}?mark=active",class:'ms-2 btn btn-warning  mt-4 text-decoration-none'%>
         <% end %>

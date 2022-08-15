@@ -8,8 +8,6 @@ RSpec.describe RestaurantPolicy, type: :policy do
   let(:user) { create(:user) }
   let(:user_owner) { create(:user, email: 'owner@test.com', owner: true) }
 
-  
-
   permissions :create? do
     include_examples 'Only owner can'
   end

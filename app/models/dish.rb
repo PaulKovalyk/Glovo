@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Dish < ApplicationRecord
+  mount_uploader :image_dish, ImageDishUploader
   belongs_to :restaurant
   has_many :line_items, dependent: :destroy
   validates :name, :price, :weight, :category, presence: true

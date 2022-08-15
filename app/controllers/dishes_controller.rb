@@ -48,11 +48,12 @@ class DishesController < ApplicationController
   private
 
   def dish_params_require
-    params.require(:dish).permit(:name, :price, :weight, :category, :id, :restaurant_id)
+    params.require(:dish).permit(:name, :price, :weight, :category, :id, :restaurant_id, :image_dish,
+                                 :remove_image_dish)
   end
 
   def dish_params
-    params.permit(:name, :price, :weight, :category, :id, :restaurant_id)
+    params.permit(:name, :price, :weight, :category, :id, :restaurant_id, :image_dish)
   end
 
   def set_restaurant

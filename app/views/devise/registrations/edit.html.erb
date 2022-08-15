@@ -40,7 +40,20 @@
     <%= f.password_field :current_password, autocomplete: "current-password" ,class: 'form-control' %>
   <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
   </div>
-  
+  <div>
+      <%= f.file_field :avatar %>
+  </div>
+    <div>
+      <%= image_tag(current_user.avatar.url, class:'h-100 w-100 form-control ') if current_user.avatar?%>
+    </div>
+    <p>
+      <label>
+        <%= f.check_box :remove_avatar %>
+        Click here if you wanna remove avatar
+      </label>
+    </p>
+   
+  <div>
   <div class="action">
     <%= f.submit "Update",method: :update, class: 'btn btn-primary'  %>
     <%= link_to t('.back'), :back , class: 'btn btn-primary' %>

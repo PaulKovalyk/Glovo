@@ -70,3 +70,15 @@
    height: 100vh !important;
    }
    }
+.image_size{
+   max-height: 200px;
+    max-width: 250px;
+}
+.image_dish_size{
+   max-height: 300px;
+    max-width: 300px;
+}
+.avatar_size{
+   max-height: 50px;
+   max-width: 50px;
+}
