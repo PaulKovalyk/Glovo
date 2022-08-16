@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[show edit update]
   before_action :fetch_tags, only: %i[new edit]
   def index
-    @restaurants = policy_scope(Restaurant).order(created_at: :desc)
+    @pagy,@restaurants = pagy policy_scope(Restaurant).order(created_at: :desc)
   end
 
   def new
