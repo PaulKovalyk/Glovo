@@ -48,7 +48,10 @@
              <%if dish.image_dish?  %>
               <%= image_tag(dish.image_dish.url, class:'image_dish_size') %>
               <%else %>
-              <img src="https://fakeimg.pl/300x300/" alt="dish" class="image_dish_size">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB6CAMAAABHh7fWAAAAYFBMVEX///8AAADQ0NBoaGj7+/vp6ekuLi7s7Ozg4OCFhYVhYWHw8PD19fU1NTWurq4+Pj53d3e6uroaGhrW1tZTU1O0tLSbm5vGxs
+              YWFhZISEiOjo6ioqIlJSUMDAyVlZVaWlrRSlJ5AAAD60lEQVRoge2a15qrIBSFrQnYWywx5f3f8rg3mDGJBlTk3PDfxG+cYQmsXTBjWQaDwWAwGAwGww78vovjrvf1KyetjbSJbmVqv6B6lRN7gtZ5hzeUJAQf4RZqlL6AIhrMh6uLRml30KvZZT1cuhql00HPYZfOcJlqlm7YZaNZOvuLKYiyTKM0TJWtOKz3uABa8GDF7SzPYfp26mmUZtMe0Tlpi0c2Q2dUI07KhFNHt/JAc7ftu+bFBjziXED64hCNJisT2tlvdDQpD5f1WTjNkeUHNixeE9yXhIF70Byz+GGfTlTiKnAzSjM3qOLJ86S9+tod1adx+FPQO2SiEBKnD/7u1pFa5aR4jezMDh05r2crVDZMZHQ0fcsfzsm+xWl2He3
+              tjL1iR1QpX9mA7ePDRBOHxTXKew/eIl+VCPt8yv2Xe9s3f9+uMFev5xNXEGkN2+Xs/H0rT9u3YLs/YT/OLPKL3SmWNdy3+XEin5Cy6d30Nf8AxBtslfe25zUbUBSsJA/GEIDlCV28rPcoM8v2Mr8aXcaMA7NlO77jSMSUpTetDJh2FY1tzGbtB9plTYyWFbPYEGkEd+CxTRkXrV0ZJDztDU2T30pv1ifl+Pzr8IPRHyU+xYZCHsEftlsar8dobwfmXayvJhgf+QblsVsdjJ7D5+qzYLLDJOxIApHx2JBa8NgcbFQetYfYwI1f51Rc7h0NB4Z1HFrh6iVveIBsB/c7459rKgnkxGqPMs+Eg00hyaw4f+d8p3YBZf4UWmRdpMRbYuITwpM42CaW/aNGxaR5ZBH2CLK7Xdlq3lGc2OJl8sY5b0y9X/C3a1gMZvqrGR777c0Bp13ZKsolxnRvTL/AaXv4IRVfkEMLufUREcUYWOdCMpv2KiKLc2WGdSV7hmB9sVkEAyvCMihRi8JC2o9ivA5jGmKmEBcjeFB17+AoZjR8wyfOUbmifMKAxPhkWUWcx6m989jwRjSMdjtjqhD35MHK+ipgSCedh5MX+syrlJSOFxGlITNQJTJQmO7rjBZGBe+KRj1DuVGtjC8gTt8RS5wp2KCUjmKweOVvPyIfX5bpJLHEv3MUVvW/lCsrpC4DrN26hwLHv5Rf04nhscqoqhuz4GlqNmc87e0HPCkgnT5n70AfEyt+tzoFe5b5ziuErTjwuwxI5O1CSoOitf1gKwQK01L5WraBCtDGi80hxLiad7ozXO1f7X1+oNF4Y7yI/fv2HrAu/bgPRpM+kK4j/mEyAK0wH/U7eQotjK/R26T0lVKyf9353ehGH18ZqqQTGNg
+              /TFv8bUhExaNsgcoELemr+KSUuOrlk6SnFGlZg8FgMBgMBsN/4h992ivsHKhsIgAAAABJRU5ErkJggg==" alt="dish" class="image_dish_size">
               <%end %>
             <h3><%=dish.name%></h3>
             <h6>Price: <%=dish.price%> UAH</h6>

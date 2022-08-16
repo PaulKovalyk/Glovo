@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Restaurant < ApplicationRecord
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, RestaurantUploader
   has_many :restaurant_tags, dependent: :destroy
   has_many :tags, through: :restaurant_tags
   has_many :dishes, dependent: :destroy
