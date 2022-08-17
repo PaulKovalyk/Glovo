@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_08_15_181711) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -20,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_181711) do
     t.string "name"
     t.integer "price"
     t.integer "weight"
-    t.integer "restaurant_id"
+    t.bigint "restaurant_id"
     t.integer "category", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,12 +32,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_181711) do
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "dish_id"
-    t.integer "cart_id"
+    t.bigint "dish_id"
+    t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
-    t.integer "order_id"
+    t.bigint "order_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["dish_id"], name: "index_line_items_on_dish_id"
     t.index ["order_id"], name: "index_line_items_on_order_id"
@@ -52,8 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_181711) do
   end
 
   create_table "restaurant_tags", force: :cascade do |t|
-    t.integer "restaurant_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id", "tag_id"], name: "index_restaurant_tags_on_restaurant_id_and_tag_id", unique: true
