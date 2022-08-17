@@ -11,7 +11,8 @@ class Restaurant < ApplicationRecord
 
  
   scope :all_by_tags, lambda { |tags|
-    restaurants = includes(:user)
+ 
+    restaurants = Restaurant.all
     restaurants = if tags
       restaurants.joins(:tags).where(tags: tags)
                 else
