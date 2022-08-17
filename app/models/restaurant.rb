@@ -11,7 +11,6 @@ class Restaurant < ApplicationRecord
 
  
   scope :all_by_tags, lambda { |tags|
- 
     restaurants = Restaurant.all
     restaurants = if tags
       restaurants.joins(:tags).where(tags: tags)
@@ -21,4 +20,13 @@ class Restaurant < ApplicationRecord
 
                 restaurants.order(created_at: :desc)
   }
+
+  def self.search(params)
+    if params
+      params = params[0].capitalize
+      self.where("name LIKE ?", "%#{params}%")
+    else
+      self.all
+    end
+  end
 end

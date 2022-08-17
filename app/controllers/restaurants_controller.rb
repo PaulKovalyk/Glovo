@@ -7,7 +7,7 @@ class RestaurantsController < ApplicationController
   before_action :fetch_tags, only: %i[new edit]
   def index
     @pagy,@restaurants = pagy policy_scope(Restaurant).all_by_tags(params[:tag_ids]).
-    order(created_at: :desc)
+    search(params[:search]).order(created_at: :desc)
   end
 
   def new
