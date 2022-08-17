@@ -1,3 +1,4 @@
-<div class="border rounded-3 p-1 me-3 mt-2 bg-body">
+<%= link_to restaurants_path(tag_ids: tag) ,
+class: 'border rounded-3 p-1 me-3 mt-2 bg-body' do %>
 <small class="fs-6 text-warning"><%= tag.title %></small>
-</div>
+<% end %>
