@@ -6,7 +6,7 @@ class Restaurant < ApplicationRecord
   has_many :tags, through: :restaurant_tags
   has_many :dishes, dependent: :destroy
   belongs_to :user
-  validates :name, :description, :address, presence: true
+  validates :name, :description, :address, presence: true, uniqueness: {case_sensitive: false}
   validates :name, length: { minimum: 2 }
 
   scope :all_by_tags, lambda { |tags|
@@ -22,8 +22,7 @@ class Restaurant < ApplicationRecord
 
   def self.search(params)
     if params
-      params = params[0].capitalize
-      where('name LIKE ?', "%#{params}%")
+      where('lower(name) LIKE ?', "%#{params.downcase}%")
     else
       all
     end

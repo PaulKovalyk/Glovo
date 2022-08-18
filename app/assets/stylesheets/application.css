@@ -79,6 +79,8 @@
     max-width: 300px;
 }
 .avatar_size{
-   max-height: 50px;
-   max-width: 50px;
+   vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

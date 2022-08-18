@@ -30,13 +30,17 @@
     "#{restaurant_dishes_path(@restaurant)}?category=dessert",
     class:"text-dark text-decoration-none link-warning"%></h6>
     </article>
-   
+   <article class="card mb-2">
+    <h6 class="text-center card-body"><%=link_to 'Check order',
+    cart_path(@cart),
+    class:"text-dark text-decoration-none link-warning"%></h6>
+    </article>
    
   </div>
   
   <div class="col-11 d-flex ms-3 flex-wrap">
     <% if @dishes_by_category.empty? %>
-    <h3>This page is empty</h3>
+    <h3>Sorry, we have no dishes in this category &#128532</h3>
     <% else %>
     <% @dishes_by_category.each do |dish|%>
       

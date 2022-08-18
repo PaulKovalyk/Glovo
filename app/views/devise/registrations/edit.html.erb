@@ -32,29 +32,31 @@
   <div class="form-group">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class: 'form-control' %>
-   <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
+   <strong class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></strong>
   </div>
 
   <div class="form-group">
     <%= f.label :current_password %> 
     <%= f.password_field :current_password, autocomplete: "current-password" ,class: 'form-control' %>
-  <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+  <strong class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></strong>
   </div>
-  <div>
+  <div class="form-group mt-2">
+      <%= f.label :choose_your_photo %> 
       <%= f.file_field :avatar %>
   </div>
     <div>
       <%= image_tag(current_user.avatar.url, class:'h-100 w-100 form-control ') if current_user.avatar?%>
     </div>
+   <% if current_user.avatar?%>
     <p>
       <label>
         <%= f.check_box :remove_avatar %>
         Click here if you wanna remove avatar
       </label>
     </p>
-   
+   <% end %>
   <div>
-  <div class="action">
+  <div class="action mt-2">
     <%= f.submit "Update",method: :update, class: 'btn btn-primary'  %>
     <%= link_to t('.back'), :back , class: 'btn btn-primary' %>
   

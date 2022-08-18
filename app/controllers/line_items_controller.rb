@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create]
@@ -10,8 +9,11 @@ class LineItemsController < ApplicationController
     @line_item = @cart.add_product(dish.id)
 
     if @cart.line_items.first.dish.restaurant_id == @line_item.dish.restaurant_id
+     
       @line_item.save
-      redirect_to @line_item.cart
+      @restaurant = @line_item.dish.restaurant_id
+      flash[:success] = "#{@line_item.dish.name} added to your order"
+      redirect_to restaurant_dishes_path(@restaurant)
     else
       flash[:success] = 'You cant order from other restaurant'
       redirect_to root_path

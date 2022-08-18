@@ -21,7 +21,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'GET /create' do
     let(:valid_params) do
-      { order: { name: 'Anton', address: 'Volodymyra Velukoho', email: 'anton@test.com', pay_type: 'cash',
+      { order: { name: 'Anton', address: 'Volodymyra Velukoho', email: 'anton@test.com', 
                  user_id: user.id } }
     end
     let(:invalid_params) { { order: { name: '', address: '', email: 'anton.com', user_id: user.id } } }

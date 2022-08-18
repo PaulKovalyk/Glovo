@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class DishesController < ApplicationController
+  include CurrentCart
   skip_before_action :authenticate_user!, only: %i[index]
+  before_action :set_cart, only: [:index]
   before_action :set_restaurant, only: %i[new create index edit update]
   before_action :set_dish, only: %i[edit update]
   def new
@@ -11,6 +13,7 @@ class DishesController < ApplicationController
 
   def index
     authorize Dish
+
     @dishes_by_category = if params[:category]
                             @restaurant.dishes.where(category: params[:category])
                           else
