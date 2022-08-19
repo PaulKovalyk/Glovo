@@ -1,41 +1,42 @@
 <div class=" container d-flex">
   <div class=" col-2 ">
     
-    <article class="card mb-2">
+    <article class="card mb-2 bg-secondary">
   <h6 class="text-center card-body"><%=link_to 'All dishes',
     "#{restaurant_dishes_path(@restaurant)}",
     class:"text-dark text-decoration-none link-warning"%></h6>
     </article>
 
-    <article class="card mb-2">
+    <article class="card mb-2 bg-secondary">
    <h6 class="text-center card-body"><%=link_to 'Soup',
     "#{restaurant_dishes_path(@restaurant)}?category=soup",
     class:"text-dark text-decoration-none link-warning"%></h6>
     </article>
    
-   <article class="card mb-2">
+   <article class="card mb-2 bg-secondary">
     <h6 class="text-center card-body"><%=link_to 'Pizza',
     "#{restaurant_dishes_path(@restaurant)}?category=pizza",
     class:"text-dark text-decoration-none link-warning"%></h6>
     </article>
    
-   <article class="card mb-2">
+   <article class="card mb-2 bg-secondary">
     <h6 class="text-center card-body"><%=link_to 'Main Dish',
     "#{restaurant_dishes_path(@restaurant)}?category=main_dish",
     class:"text-dark text-decoration-none link-warning"%></h6>
     </article>
    
-   <article class="card mb-2">
+   <article class="card mb-2 bg-secondary">
     <h6 class="text-center card-body"><%=link_to 'Dessert',
     "#{restaurant_dishes_path(@restaurant)}?category=dessert",
     class:"text-dark text-decoration-none link-warning"%></h6>
     </article>
-   <article class="card mb-2">
-    <h6 class="text-center card-body"><%=link_to 'Check order',
-    cart_path(@cart),
+   <% if current_user.cart %>
+   <article class="card mb-2 bg-primary">
+    <h6 class="text-center card-body"><%=link_to 'Check basket',
+    cart_path(current_user.cart),
     class:"text-dark text-decoration-none link-warning"%></h6>
     </article>
-   
+    <% end %>
   </div>
   
   <div class="col-11 d-flex ms-3 flex-wrap">
