@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+# let some comentaries
 class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
   before_action :set_cart, only: %i[show destroy]
