@@ -1,19 +1,7 @@
  <%= form_with model: @order do |f| %>
   <div>
-    <%= f.text_field :name,class:"form-control form-control-lg",placeholder: "Name"%>
-    <%= f.label :name, class:"form-label"%>
-  </div>
-  <div>
     <%= f.text_field :address,class:"form-control form-control-lg",placeholder: "Address"%>
     <%= f.label :address, class:"form-label"%>
-  </div>
-  <div>
-    <%= f.text_field :email,class:"form-control form-control-lg",placeholder: "Email"%>
-    <%= f.label :email, class:"form-label"%>
-  </div>
-  <div>
-    <%= f.text_field :pay_type,class:"form-control form-control-lg",placeholder: "Pay type"%>
-    <%= f.label :pay_type, class:"form-label"%>
   </div>
   <hr class="my-4">
   <div class="d-flex justify-content-between mb-4">

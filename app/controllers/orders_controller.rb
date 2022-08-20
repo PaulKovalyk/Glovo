@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :address, :email, :pay_type, :created_at, :mark)
+    params.require(:order).permit(:name, :address, :email, :created_at, :mark)
   end
 
   def set_restaurant

@@ -4,7 +4,12 @@ class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
   before_action :set_cart, only: %i[show destroy]
   def show
+    if current_user.id == @cart.user_id
     @order = Order.new
+    else
+      redirect_to root_path
+      flash[:success] = 'Invalid cart'
+    end
   end
 
   def destroy

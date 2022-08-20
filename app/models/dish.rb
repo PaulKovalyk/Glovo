@@ -5,7 +5,7 @@ class Dish < ApplicationRecord
   belongs_to :restaurant
   has_many :line_items, dependent: :destroy
   validates :name, :price, :weight, :category, presence: true
-  enum category: { no_category: 0, main_dish: 1, pizza: 2, dessert: 3, soup: 4 }
+  enum category: { "No category": 0, "Main dish": 1, Pizza: 2, Dessert: 3, Soup: 4 }
 
   before_destroy :ensure_not_refrenced_by_any_line_item
 

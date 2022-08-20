@@ -3,8 +3,11 @@
     <a class="hehe-link tn dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
       
       <div class=' h5 d-inline text-success '>
-      <%= image_tag(current_user.avatar.url, class:'avatar_size rounded-circle shadow-4"') if current_user.avatar? %>
+      <% if current_user.avatar?  %>
+      <%= image_tag(current_user.avatar.url, class:'avatar_size bg-info shadow-4"') %>
+      <% else %>
       <%= current_user.first_name %>
+      <% end %>
       </div>
     </a>
     

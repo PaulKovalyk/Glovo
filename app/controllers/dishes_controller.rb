@@ -11,6 +11,7 @@ class DishesController < ApplicationController
 
   def index
     authorize Dish
+
     @dishes_by_category = if params[:category]
                             @restaurant.dishes.where(category: params[:category])
                           else

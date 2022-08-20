@@ -1,8 +1,7 @@
 # frozen_string_literal: true
-
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :destroy]
   before_action :set_restaurant, only: [:destroy]
   def create
     authorize LineItem
@@ -10,8 +9,11 @@ class LineItemsController < ApplicationController
     @line_item = @cart.add_product(dish.id)
 
     if @cart.line_items.first.dish.restaurant_id == @line_item.dish.restaurant_id
+     
       @line_item.save
-      redirect_to @line_item.cart
+      @restaurant = @line_item.dish.restaurant_id
+      flash[:success] = "#{@line_item.quantity} x #{@line_item.dish.name} added to your order"
+      redirect_to restaurant_dishes_path(@restaurant)
     else
       flash[:success] = 'You cant order from other restaurant'
       redirect_to root_path
@@ -20,15 +22,21 @@ class LineItemsController < ApplicationController
 
   def destroy
     authorize @line_item
-    @line_item.destroy
-    if current_user.owner?
-      redirect_to restaurant_path(@restaurant)
+    if @line_item.quantity >1
+        @line_item.update(quantity: @line_item.quantity-1)
+        redirect_back(fallback_location: root_path)
     else
-      redirect_to(orders_path)
+      @line_item.destroy
+        if current_user.owner?
+          redirect_to restaurant_path(@restaurant)
+        else
+          redirect_to @line_item.cart
+        end
     end
     flash[:success] = 'Dish deleted'
   end
 
+  
   private
 
   def line_items_params
